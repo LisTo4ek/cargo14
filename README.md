@@ -28,9 +28,10 @@ docker compose exec app bash
 
 ### Execute
 Please note: The algorithm is not fully functional yet, but you can run it to see the current state of the code.
-```
+```shell
 php artisan app:calculate
 ```
 
 Entry point is in the `app/Console/Commands/Calculate.php` file. The algorithm is not fully functional yet, but you can run it to see the current state of the code.
+
 Algorithm is in the `app/Services/Calculator/Algorithms/SliceAlgorithm.php` file.
