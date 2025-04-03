@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: cargo14_nginx
+    ports:
+      - "82:80"
+    volumes:
+      - ./:/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - cargo14_network
+
+  app:
+    build:
+      args:
+        progress: plain
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: cargo14_app
+    volumes:
+      - ./:/app
+    ports:
+      - "9001:9003"  # Expose Xdebug port
+    networks:
+      - cargo14_network
+    environment:
+      PHP_IDE_CONFIG: serverName=cargo14.my.local
+      XDEBUG_CONFIG: client_host=host.docker.internal
+      XDEBUG_MODE: debug
+
+#  mysql:
+#    image: mysql:8.0
+#    container_name: lcargo14_mysql
+#    restart: unless-stopped
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_DATABASE: laravel
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_PASSWORD: secret
+#      MYSQL_USER: laravel
+#    volumes:
+#      - cargo14_mysql_data:/var/lib/mysql
+#    networks:
+#      - cargo14_network
+#
+#  redis:
+#    image: redis:alpine
+#    container_name: cargo14_redis
+#    restart: unless-stopped
+#    ports:
+#      - "6388:6379"
+#    networks:
+#      - cargo14_network
+
+networks:
+  cargo14_network:
+    driver: bridge
+
+volumes:
+  cargo14_mysql_data:
+
+
