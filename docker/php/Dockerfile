@@ -37,5 +37,8 @@ WORKDIR /app
 # Copy existing application directory permissions
 COPY --chown=www-data:www-data . /app
 
+# Install composer dependencies
+RUN composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
 # Change current user to www-data
 USER www-data

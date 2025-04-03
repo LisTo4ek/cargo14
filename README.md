@@ -1,5 +1,10 @@
 
 ## Setup
+
+```shell
+cp .env.example .env
+```
+
 ```shell
 docker compose up -d --build
 ```
@@ -7,6 +12,11 @@ docker compose up -d --build
 ## Enter the container
 ```shell
 docker compose exec app bash
+```
+
+## Install dependencies
+```shell
+composer install
 ```
 
 ## Run example
