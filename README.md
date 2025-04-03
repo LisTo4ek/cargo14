@@ -1,5 +1,5 @@
 
-## Setup
+# Setup
 
 ```shell
 cp .env.example .env
@@ -9,18 +9,24 @@ cp .env.example .env
 docker compose up -d --build
 ```
 
-## Enter the container
+### Enter the container
 ```shell
 docker compose exec app bash
 ```
 
-## Install dependencies
+### Install dependencies
 ```shell
 composer install
 ```
 
-## Run example
-The algorithm is not fully functional yet, but you can run it to see the current state of the code.
+# Run example
+
+### Enter the container
+```shell
+docker compose exec app bash
+```
+
+### The algorithm is not fully functional yet, but you can run it to see the current state of the code.
 ```
 php artisan app:calculate
 ```
